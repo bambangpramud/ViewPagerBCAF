@@ -1,0 +1,106 @@
+package com.bcaf.viewpagerbcaf.fragment
+
+import android.content.Context
+import android.content.Intent
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Toast
+import com.bcaf.viewpagerbcaf.LoginActivity
+import com.bcaf.viewpagerbcaf.R
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.tasks.Task
+import com.google.firebase.FirebaseApp
+import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.fragment_1.*
+import kotlinx.android.synthetic.main.fragment_1.view.*
+
+// TODO: Rename parameter arguments, choose names that match
+// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+private const val ARG_PARAM1 = "param1"
+private const val ARG_PARAM2 = "param2"
+
+/**
+ * A simple [Fragment] subclass.
+ * Use the [Fragment1.newInstance] factory method to
+ * create an instance of this fragment.
+ */
+class Fragment1 : Fragment() {
+    // TODO: Rename and change types of parameters
+    private var param1: String? = null
+    private var param2: String? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            param1 = it.getString(ARG_PARAM1)
+            param2 = it.getString(ARG_PARAM2)
+        }
+    }
+
+
+
+    private lateinit var firebaseAuth : FirebaseAuth
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+
+      val view = inflater.inflate(R.layout.fragment_1, container, false)
+        // Inflate the layout for this fragment
+        FirebaseApp.initializeApp(requireContext())
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+//            .requestIdToken("129392762639-avsp2tv2l991osjuaan99dnljm6gubb1.apps.googleusercontent.com")
+            .requestIdToken("129392762639-3f2do63bcnes5hhec1b008nd4ur2gc8p.apps.googleusercontent.com")
+            .requestEmail()
+            .build()
+        firebaseAuth = FirebaseAuth.getInstance()
+
+        val acc = GoogleSignIn.getLastSignedInAccount(activity)
+
+        view.txtNama.setText(acc?.displayName)
+        view.txtEmail.setText(acc?.email)
+        var mGoogleSignInClient = GoogleSignIn.getClient(requireContext(),gso)
+        view.btnLogout.setOnClickListener({
+
+
+            Toast.makeText(context,"test",Toast.LENGTH_LONG).show()
+
+            mGoogleSignInClient.signOut().addOnCompleteListener{
+                firebaseAuth.currentUser?.delete()
+                firebaseAuth.signOut()
+                startActivity(Intent(context,LoginActivity::class.java))
+                activity?.finish()
+
+            }
+
+
+        })
+        return view
+    }
+
+
+    companion object {
+        /**
+         * Use this factory method to create a new instance of
+         * this fragment using the provided parameters.
+         *
+         * @param param1 Parameter 1.
+         * @param param2 Parameter 2.
+         * @return A new instance of fragment Fragment1.
+         */
+        // TODO: Rename and change types and number of parameters
+        @JvmStatic
+        fun newInstance(param1: String, param2: String) =
+            Fragment1().apply {
+                arguments = Bundle().apply {
+                    putString(ARG_PARAM1, param1)
+                    putString(ARG_PARAM2, param2)
+                }
+            }
+    }
+}

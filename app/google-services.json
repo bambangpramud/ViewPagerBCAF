@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "129392762639",
+    "project_id": "bcafbootcampbambang",
+    "storage_bucket": "bcafbootcampbambang.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:129392762639:android:d75006e465aff60299a87a",
+        "android_client_info": {
+          "package_name": "com.bcaf.viewpagerbcaf"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "129392762639-3f2do63bcnes5hhec1b008nd4ur2gc8p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDC7Phf3a5Ukxxo2yC3_zEPfv5ZKsKNOOs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "129392762639-3f2do63bcnes5hhec1b008nd4ur2gc8p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

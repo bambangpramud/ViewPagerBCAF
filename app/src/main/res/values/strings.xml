@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">ViewPagerBCAF</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="TabMenuFragment">
+        <item>Weather</item>
+        <item>Movie</item>
+        <item>About</item>
+        <item>Uhuy</item>
+        <item>Weather</item>
+        <item>Movie</item>
+        <item>About</item>
+        <item>Uhuy</item>
+    </string-array>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+
+</resources>
